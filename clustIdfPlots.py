@@ -37,7 +37,7 @@ def main():
 		for row in tupleReader:
 			rowCount += 1
 			# print(row[2])
-			idfTuples.append(map(float,[row[i] for i in colsToGet]))
+			idfTuples.append(map(float,[row[i] for i in colsToGet])+[row[2]])
 			idfClassTuple.append(map(float,[row[i] for i in colsToGet] )+[class2Logical(row[6])])
 			idfWords.append(row[1])
 			# print(idfTuples[rowCount-1])
@@ -71,7 +71,7 @@ def main():
 			wordsFalse.append(idfWords[i])
 		else:
 			print("Not a valid class!!")
-	
+
 	# plot the points coloured according to the manual classification
 	fig = plt.figure(1, figsize=(16, 9))
 	# redDots, = plt.plot([row[0] for row in tuplesTrue],[row[1] for row in tuplesTrue],'ro')
@@ -84,8 +84,8 @@ def main():
 	plt.title("a2 a3 feature space: actual classes")
 
 	# plt.annotate(wordsTrue, xy=( [row[0] for row in tuplesTrue],[row[1] for row in tuplesTrue] ), xytext=(-20,20) )
-	# for label, x, y in zip( wordsTrue, [row[0] for row in tuplesTrue], [row[1] for row in tuplesTrue] ):
-	# 	plt.annotate(label, xy=(x,y),  xytext = (-20, (250*np.absolute(np.sin(20*x)))), textcoords = 'offset points')
+	for label, x, y in zip( wordsTrue, [row[0] for row in tuplesTrue], [row[1] for row in tuplesTrue] ):
+		plt.annotate(label, xy=(x,y),  xytext = (-20, (250*np.absolute(np.sin(20*x)))), textcoords = 'offset points')
 	# for label, x, y in zip( wordsFalse, [row[0] for row in tuplesFalse], [row[1] for row in tuplesFalse] ):
 	# 	plt.annotate(label, xy=(x,y),  xytext = (-20, 30), textcoords = 'offset points')
 
