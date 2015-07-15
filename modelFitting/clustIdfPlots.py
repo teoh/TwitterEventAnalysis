@@ -62,6 +62,7 @@ def main():
 	tuplesFalse = list()
 	wordsTrue = list()
 	wordsFalse = list()
+	# split the list into event and non event words
 	for i in range (rowCount):
 		if(idfClassTuple[i][2] == 1):
 			tuplesTrue.append(idfClassTuple[i])
@@ -84,10 +85,10 @@ def main():
 	plt.title("a2 a3 feature space: actual classes")
 
 	# plt.annotate(wordsTrue, xy=( [row[0] for row in tuplesTrue],[row[1] for row in tuplesTrue] ), xytext=(-20,20) )
-	for label, x, y in zip( wordsTrue, [row[0] for row in tuplesTrue], [row[1] for row in tuplesTrue] ):
-		plt.annotate(label, xy=(x,y),  xytext = (-20, (250*np.absolute(np.sin(20*x)))), textcoords = 'offset points')
-	# for label, x, y in zip( wordsFalse, [row[0] for row in tuplesFalse], [row[1] for row in tuplesFalse] ):
-	# 	plt.annotate(label, xy=(x,y),  xytext = (-20, 30), textcoords = 'offset points')
+	# for label, x, y in zip( wordsTrue, [row[0] for row in tuplesTrue], [row[1] for row in tuplesTrue] ):
+	# 	plt.annotate(label, xy=(x,y),  xytext = (-20, (250*np.absolute(np.sin(20*x)))), textcoords = 'offset points')
+	for label, x, y in zip( wordsFalse, [row[0] for row in tuplesFalse], [row[1] for row in tuplesFalse] ):
+		plt.annotate(label, xy=(x,y),  xytext = (-20, 30), textcoords = 'offset points')
 
 	# plot the points coloured to the clusters
 	fig = plt.figure(2, figsize=(16, 9))
