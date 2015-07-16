@@ -9,10 +9,11 @@ from mpl_toolkits.mplot3d import Axes3D
 from sklearn import preprocessing
 from sklearn import svm, datasets
 import csv
+from sklearn.externals import joblib
 
 def class2Logical(tupleClass):
 	if(tupleClass == "TRUE"):
-		return 5
+		return 1
 	elif (tupleClass == "FALSE"):
 		return 0
 	else:
@@ -22,7 +23,7 @@ def class2Logical(tupleClass):
 
 def main():
 
-	scaleData = 1
+	scaleData = 0
 
 	idfTuples = list()		# ALL of the tuples. gets used for the support vector computation
 	idfLabels = list()		# ALL of the TRUE/FALSE labels, used when printing the cluster labels vs the true labels
@@ -85,6 +86,7 @@ def main():
 	ax.scatter(idfTuples[:,0],idfTuples[:,1],idfTuples[:,2],c=idfLabels,s=200, alpha= 1)
 	plt.show()
 
+	joblib.dump(svc,'/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/modelInfo/svIdfModel.pkl')
 
 
 if __name__ == '__main__':
