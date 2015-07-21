@@ -10,6 +10,7 @@ from sklearn import preprocessing
 from sklearn import svm, datasets
 import csv
 from sklearn.externals import joblib
+import sys
 
 def class2Logical(tupleClass):
 	if(tupleClass == "TRUE"):
@@ -22,6 +23,8 @@ def class2Logical(tupleClass):
 
 
 def main():
+	eventName = sys.argv[1]
+
 	svc = joblib.load('/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/modelInfo/svIdfModel.pkl')
 
 	idfTuples = list()		# ALL of the tuples. gets used for the support vector computation
@@ -30,7 +33,7 @@ def main():
 
 
 	# read the file
-	with open("/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/testDat/charlotte_tuples.csv",'rb') as inCsvFile:
+	with open("/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/testDat/"+eventName+"_tuples.csv",'rb') as inCsvFile:
 		tupleReader = csv.reader(inCsvFile,delimiter=',')
 		next(tupleReader, None)  
 		for row in tupleReader:
@@ -49,7 +52,7 @@ def main():
 
 	print("Writing discovered words to file...")
 
-	with open('testResults.csv','wb') as outCsvFile:
+	with open('testResults/'+eventName+'_testResults.csv','wb') as outCsvFile:
 		testResWriter = csv.writer(outCsvFile, delimiter='	')
 		for rowNum in range(pred.shape[0]):
 			if(pred[rowNum]):

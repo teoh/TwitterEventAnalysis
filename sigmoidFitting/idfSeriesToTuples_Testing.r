@@ -1,6 +1,8 @@
 # idfSeriesToTuples_Testing.r
 # use this with chandans idf series for a larger set of words. the plot that chandan gave should have the "truth" values of the words
 # based on where it is on the plane
+args=(commandArgs(TRUE))
+
 library(zoo)
 library(xts)
 
@@ -17,9 +19,11 @@ sigmoid = function(params,t){
 }
 
 # these are MANUALLY set:
-setwd('/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/results')
-data = read.table('/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/moreWordsOldEvents/out_1filter/charlotte.csv',sep = ',',header = FALSE,skip = 1,stringsAsFactors = FALSE)
-outFilePath = '/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/testDat/charlotte_tuples.csv'
+eventWord = args[1] # "charlotte"
+setwd('/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/')
+data = read.table(paste('/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/testRawIdf/',
+                        eventWord,'.csv',sep = ''),sep = ',',header = FALSE,skip = 1,stringsAsFactors = FALSE)
+outFilePath = paste('/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/testDat/',eventWord,'_tuples.csv',sep = '')
 
 numRows = dim(data)[1]
 numCols = dim(data)[2]
