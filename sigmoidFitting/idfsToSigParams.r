@@ -14,7 +14,7 @@ sigmoid = function(params,t){
   sigmoid=a1 + a2/(1+exp(-a3*(t-a4)))
 }
 
-setwd('/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/results')
+setwd('/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/testDat')
 csvFiles<-list.files(pattern=".csv")
 csvFiles
 
@@ -67,7 +67,7 @@ for(fileGroup in c(1:dim(fileNums)[2])){
       print(filename)
     }
     # read the data
-    data=read.table(paste('/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/results/',filename,sep=""))
+    data=read.table(paste('/Users/internship/Desktop/internship/chandanStuff/twitter-events/results/wordIdfs/',filename,sep=""))
     
     # prepare the minutes and the idf values
     t <- c(1:dim(data)[1]) # these are the minutes
@@ -124,4 +124,4 @@ for(fileGroup in c(1:dim(fileNums)[2])){
   }
 }
 
-write.table(wordIdfTuples,file = '/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/wordIdfTuples.csv', sep = ",", row.names = FALSE)
+# write.table(wordIdfTuples,file = '/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/wordIdfTuples.csv', sep = ",", row.names = FALSE)

@@ -18,3 +18,4 @@ for fileName in rawIdfFiles:
 		os.system("Rscript ./sigmoidFitting/idfSeriesToTuples_Testing.r "+rawIdfFileBase)
 		os.system("./modelFitting/supportVecIDF_test.py "+rawIdfFileBase)
 
+ 

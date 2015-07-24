@@ -19,7 +19,7 @@ import string
 
 def get_stopwords(fname):
 	with open(fname, 'r') as f:
-		return set(f.readlines())
+		return set(map(lambda s : s.strip(), f.readlines()))
 
 # had to make this an absolute path so that other scripts not in the same director as stddev.py could import stddev.py
 STOPWORDS = get_stopwords("/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/idfComputing/chandanPreproc/python/stopwords.txt")

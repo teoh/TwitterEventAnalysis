@@ -31,7 +31,7 @@ def main():
 	rowCount = 0 			# counts the number of observations we have
 
 	# read the file
-	with open("/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/wordIdfTuples.csv",'rb') as csvFile:
+	with open("/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/modelInfo/wordIdfTuples.csv",'rb') as csvFile:
 		tupleReader = csv.reader(csvFile,delimiter=',')
 		next(tupleReader, None)  
 		for row in tupleReader:
@@ -51,9 +51,9 @@ def main():
 	x_min, x_max = idfTuples[:, 0].min() - 1, idfTuples[:, 0].max() + 1 	# x is the a1 column
 	y_min, y_max = idfTuples[:, 1].min() - 1, idfTuples[:, 1].max() + 1 	# y is the a2 column
 	z_min, z_max = idfTuples[:, 2].min() - 1, idfTuples[:, 2].max() + 1 	# z is the a3 column
-	xx, yy, zz = np.meshgrid(np.arange(x_min, x_max, h),
+	xx, yy, zz = np.meshgrid(np.arange(x_min, x_max, 0.5),
 	                     np.arange(y_min, y_max, h),
-	                     np.arange(z_min,z_max, h))
+	                     np.arange(z_min,z_max, 5))
 	xx = xx.ravel().ravel()
 	yy = yy.ravel().ravel()
 	zz = zz.ravel().ravel()
@@ -78,15 +78,15 @@ def main():
 	ax = fig.add_subplot(111,projection='3d')
 	pred = svc.predict(np.c_[xx, yy, zz])
 	print(pred.shape)
-	ax.scatter(xx, yy, zz, c=pred, alpha=0.8)
-	ax.set_xlabel('a1')
-	ax.set_ylabel('a2')
-	ax.set_zlabel('a3')
-	plt.title('a1 a2 a3 feature space:')
+	# ax.scatter(xx, yy, zz, c=pred, alpha=0.8)
+	ax.set_xlabel('a1: y-shift')
+	ax.set_ylabel('a2: y-stretch')
+	ax.set_zlabel('a3: t-compression')
+	plt.title('a1 a2 a3 feature space: training data')
 	ax.scatter(idfTuples[:,0],idfTuples[:,1],idfTuples[:,2],c=idfLabels,s=200, alpha= 1)
 	plt.show()
 
-	joblib.dump(svc,'/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/modelInfo/svIdfModel.pkl')
+	# joblib.dump(svc,'/Users/internship/Desktop/internship/chandanStuff/twitter-events/scripts/modelInfo/svIdfModel.pkl')
 
 
 if __name__ == '__main__':
